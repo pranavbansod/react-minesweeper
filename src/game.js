@@ -3,6 +3,10 @@ class Game {
         this.cols = cols;
         this.rows = rows;
         this.bombs = bombs;
+        this.minefield = this.createMinefield()
+    }
+
+    createMinefield() {
     }
 }
 

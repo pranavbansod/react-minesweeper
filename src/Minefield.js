@@ -12,20 +12,28 @@ class Minefield extends Component {
 
     render() {
         return <div className={"minefield"}>
-            {this.createMinefield()}
+            {this.createMinefieldTable()}
         </div>
     }
 
-    createMinefield() {
+    createMinefieldTable() {
         let game = this.state.game;
         let colArray = Array.from(Array(game.cols).keys());
-        return colArray.map((col)=><div className={'mine-row'} key={col}>{this.createMinefieldRow()}</div>);
+        return colArray.map((col)=><div className={'mine-row'} key={col}>{this.createMinefieldRow(col)}</div>);
     }
 
-    createMinefieldRow() {
+    handleClick(clickedCellIndexes) {
+        console.log(clickedCellIndexes)
+    }
+
+    createMinefieldRow(col) {
         let game = this.state.game;
         let rowArray = Array.from(Array(game.rows).keys());
-        return rowArray.map((row)=><Square key={`${row}`}></Square>);
+        return rowArray.map((row)=><Square
+            key={`${row}`}
+            indexes={`${col}${row}`}
+            onClick={()=>this.handleClick({colIndex:col,rowIndex:row})}
+        ></Square>);
     }
 }
 
