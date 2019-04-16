@@ -1,0 +1,10 @@
+.minefield {
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+.mine-row:after {
+    clear: both;
+    content: "";
+    display: table;
+}
