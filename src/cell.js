@@ -1,6 +1,11 @@
 class Cell {
-    constructor(id){
+    constructor() {
+        this.value = null;
+        this.isBomb = false;
+    }
 
+    setBomb() {
+        this.isBomb = true;
     }
 }
 
