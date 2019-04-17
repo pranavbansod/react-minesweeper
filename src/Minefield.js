@@ -9,9 +9,9 @@ class Minefield extends Component {
         this.state = {
             rows:game.rows,
             cols:game.cols,
-            cells:game.cells
+            grid:game.grid.value
         };
-        console.log(this.state.cells);
+        console.log(this.state.grid);
     };
 
     createMinefieldRow(col) {

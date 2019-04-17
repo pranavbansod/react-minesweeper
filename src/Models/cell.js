@@ -6,7 +6,11 @@ class Cell {
 
     setBomb() {
         this.isBomb = true;
-        this.value = '*';
+        this.setValue('*');
+    }
+
+    setValue(newVal) {
+        this.value = newVal;
     }
 }
 
