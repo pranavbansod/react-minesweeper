@@ -10,10 +10,13 @@ class Minefield extends Component {
         };
     };
 
-    render() {
-        return <div className={"minefield"}>
-            {this.createMinefieldTable()}
-        </div>
+    createMinefieldRow(col) {
+        let game = this.state.game;
+        let rowArray = Array.from(Array(game.rows).keys());
+        return rowArray.map((row)=><Square
+            key={`${col}${row}`}
+            onClick={()=>this.handleClick({colIndex:col,rowIndex:row})}
+        ></Square>);
     }
 
     createMinefieldTable() {
@@ -26,14 +29,10 @@ class Minefield extends Component {
         console.log(clickedCellIndexes)
     }
 
-    createMinefieldRow(col) {
-        let game = this.state.game;
-        let rowArray = Array.from(Array(game.rows).keys());
-        return rowArray.map((row)=><Square
-            key={`${row}`}
-            indexes={`${col}${row}`}
-            onClick={()=>this.handleClick({colIndex:col,rowIndex:row})}
-        ></Square>);
+    render() {
+        return <div className={"minefield"}>
+            {this.createMinefieldTable()}
+        </div>
     }
 }
 
