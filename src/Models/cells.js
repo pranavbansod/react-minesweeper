@@ -1,11 +1,11 @@
-import Cell from './cell';
+import Cell from './cell'
 
-class Game {
-    constructor(cols, rows, bombs) {
+class Cells {
+    constructor(cols,rows,bombs){
         this.cols = cols;
         this.rows = rows;
-        this.bombs = bombs;
-        this.cells = this.setUpCells();
+        this.cells = this.createCellTable();
+        this.setUp(bombs)
     }
 
     createCellRow() {
@@ -24,24 +24,25 @@ class Game {
         return Math.floor(Math.random() * this.cols);
     }
 
-    setBombs(cells) {
+    setBombs(maxNumberOfBombs) {
         let numberOfBombsSet = 0;
-        while (numberOfBombsSet < this.bombs) {
-            let randomCell = cells[this.getRandomColIndex()][this.getRandomRowIndex()];
+        while (numberOfBombsSet < maxNumberOfBombs) {
+            let randomCell = this.cells[this.getRandomColIndex()][this.getRandomRowIndex()];
             if (!randomCell.isBomb) {
                 randomCell.setBomb();
                 numberOfBombsSet++;
             }
         }
-        return cells;
     }
 
-    setUpCells() {
-        let cells = this.createCellTable();
-        cells = this.setBombs(cells);
-        // Calculate Number
-        return cells
+    setBombsAroundCount() {
+
+    }
+
+    setUp(numOfBombs) {
+        this.setBombs(numOfBombs);
+        this.setBombsAroundCount();
     }
 }
 
-export default Game;
+export default Cells;
