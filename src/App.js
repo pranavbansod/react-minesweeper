@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Minefield from './Minefield';
 import Game from './game';
 import './App.css';
@@ -15,10 +15,9 @@ class App extends Component {
 
   render() {
     let state = this.state;
-    let game = new Game(state.cols,state.rows,state.bombs);
     return (
       <div className="App">
-        <Minefield gameConfig={game.getConfig()} cells={game.cells}></Minefield>
+        <Minefield game ={new Game(state.cols, state.rows, state.bombs)}></Minefield>
       </div>
     );
   }

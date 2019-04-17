@@ -42,14 +42,6 @@ class Game {
         // Calculate Number
         return cells
     }
-
-    getConfig() {
-        return {
-            cols: this.cols,
-            rows: this.rows,
-            bombs: this.bombs
-        }
-    }
 }
 
 export default Game;
