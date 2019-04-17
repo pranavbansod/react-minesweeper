@@ -15,9 +15,10 @@ class App extends Component {
 
   render() {
     let state = this.state;
+    let game = new Game(state.cols,state.rows,state.bombs);
     return (
       <div className="App">
-        <Minefield game={new Game(state.cols,state.rows,state.bombs)}></Minefield>
+        <Minefield gameConfig={game.getConfig()} cells={game.cells}></Minefield>
       </div>
     );
   }

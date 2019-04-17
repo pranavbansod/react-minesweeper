@@ -6,13 +6,15 @@ class Minefield extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            game: props.game
+            gameConfig: props.gameConfig,
+            cells:props.cells
         };
+        console.log(this.state.cells);
     };
 
     createMinefieldRow(col) {
-        let game = this.state.game;
-        let rowArray = Array.from(Array(game.rows).keys());
+        let gameConfig = this.state.gameConfig;
+        let rowArray = Array.from(Array(gameConfig.rows).keys());
         return rowArray.map((row)=><Square
             key={`${col}${row}`}
             onClick={()=>this.handleClick({colIndex:col,rowIndex:row})}
@@ -20,8 +22,8 @@ class Minefield extends Component {
     }
 
     createMinefieldTable() {
-        let game = this.state.game;
-        let colArray = Array.from(Array(game.cols).keys());
+        let gameConfig = this.state.gameConfig;
+        let colArray = Array.from(Array(gameConfig.cols).keys());
         return colArray.map((col)=><div className={'mine-row'} key={col}>{this.createMinefieldRow(col)}</div>);
     }
 
