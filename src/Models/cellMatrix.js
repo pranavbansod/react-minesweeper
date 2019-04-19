@@ -5,16 +5,16 @@ class CellMatrix {
     constructor(cols, rows, bombs) {
         this.cols = cols;
         this.rows = rows;
-        this.value = this.createGrid(cols, rows, bombs);
+        this.value = this.createGrid(cols, rows);
         this.setUp(bombs)
     }
 
-    createCellRow(rows) {
-        return Array(rows).fill(null).map(() => new Cell());
+    createCellRow(colIndex,rows) {
+        return Array.from(Array(rows).keys()).map((rowIndex)=>new Cell(colIndex,rowIndex));
     }
 
-    createGrid(cols, rows, type) {
-        return Array(cols).fill(null).map(() => this.createCellRow(rows, type));
+    createGrid(cols,rows) {
+        return Array.from(Array(cols).keys()).map((colIndex) => this.createCellRow(colIndex,rows));
     }
 
     setBombs(maxBombs) {
@@ -30,13 +30,8 @@ class CellMatrix {
         }
     }
 
-    setBombsAroundCount() {
-
-    }
-
     setUp(bombs) {
         this.setBombs(bombs);
-        this.setBombsAroundCount();
     }
 
 }

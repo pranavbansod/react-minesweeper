@@ -1,5 +1,9 @@
 class Cell {
-    constructor() {
+    constructor(colIndex,rowIndex) {
+        this.index = {
+            col:colIndex,
+            row:rowIndex
+        };
         this.value = null;
         this.isBomb = false;
     }
