@@ -16,6 +16,10 @@ class Cell {
     setValue(newVal) {
         this.value = newVal;
     }
+
+    getIndex() {
+        return this.index;
+    }
 }
 
 export default Cell;

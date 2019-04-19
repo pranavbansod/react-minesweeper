@@ -9,12 +9,12 @@ class CellMatrix {
         this.setUp(bombs)
     }
 
-    createCellRow(colIndex,rows) {
-        return Array.from(Array(rows).keys()).map((rowIndex)=>new Cell(colIndex,rowIndex));
+    createCellRow(colIndex, rows) {
+        return Array.from(Array(rows).keys()).map((rowIndex) => new Cell(colIndex, rowIndex));
     }
 
-    createGrid(cols,rows) {
-        return Array.from(Array(cols).keys()).map((colIndex) => this.createCellRow(colIndex,rows));
+    createGrid(cols, rows) {
+        return Array.from(Array(cols).keys()).map((colIndex) => this.createCellRow(colIndex, rows));
     }
 
     setBombs(maxBombs) {
@@ -30,10 +30,40 @@ class CellMatrix {
         }
     }
 
-    setUp(bombs) {
-        this.setBombs(bombs);
+    isValidIndex(index) {
+        return index.col > -1 && index.col < this.cols && index.row > -1 && index.row < this.rows;
     }
 
+    getSurroundingCellIndexes(cell) {
+        let cellIndex = cell.getIndex();
+        let surroundingCellIndexes = [];
+        for (let colIndexDelta = -1; colIndexDelta < 2; colIndexDelta++) {
+            for (let rowIndexDelta = -1; rowIndexDelta < 2; rowIndexDelta++) {
+                let isSameCell = colIndexDelta === 0 && rowIndexDelta === 0;
+                if (!isSameCell) {
+                    let surroundingCellIndex = {
+                        col: cellIndex.col + colIndexDelta,
+                        row: cellIndex.row + rowIndexDelta
+                    };
+                    surroundingCellIndexes.push(surroundingCellIndex);
+                }
+            }
+        }
+        return surroundingCellIndexes.filter((index) => {
+            return this.isValidIndex(index)
+        })
+    }
+
+    getBombsAroundCount(cell) {
+        let surroundingCellIndexes = this.getSurroundingCellIndexes(cell);
+
+    }
+
+    setUp(bombs) {
+        this.setBombs(bombs);
+        // this.setBombsAroundCount();
+        console.log(this.getSurroundingCellIndexes(this.value[0][0]));
+    }
 }
 
 export default CellMatrix
