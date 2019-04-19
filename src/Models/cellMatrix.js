@@ -1,25 +1,25 @@
 import Cell from "./cell";
-import utils from './utils'
+import utils from "./utils";
 
-class Minefield {
+class CellMatrix {
     constructor(cols, rows, bombs) {
         this.cols = cols;
         this.rows = rows;
-        this.value = this.createCellTable(cols, rows);
-        this.setUp(bombs);
+        this.value = this.createGrid(cols, rows, bombs);
+        this.setUp(bombs)
     }
 
     createCellRow(rows) {
         return Array(rows).fill(null).map(() => new Cell());
     }
 
-    createCellTable(cols, rows) {
-        return Array(cols).fill(null).map(() => this.createCellRow(rows));
+    createGrid(cols, rows, type) {
+        return Array(cols).fill(null).map(() => this.createCellRow(rows, type));
     }
 
-    setBombs(maxNumberOfBombs) {
+    setBombs(maxBombs) {
         let numberOfBombsSet = 0;
-        while (numberOfBombsSet < maxNumberOfBombs) {
+        while (numberOfBombsSet < maxBombs) {
             let randomColIndex = utils.getRandomNumberBelow(this.cols);
             let randomRowIndex = utils.getRandomNumberBelow(this.rows);
             let randomCell = this.value[randomColIndex][randomRowIndex];
@@ -30,24 +30,15 @@ class Minefield {
         }
     }
 
-    getBombsAroundCount(cell) {
-        return undefined;
-    }
-
     setBombsAroundCount() {
-        let minefieldRef = this;
-        this.value.forEach((row) => {
-            row.forEach((cell) => {
-                let bombsAroundCount = minefieldRef.getBombsAroundCount(cell);
-                cell.setValue(bombsAroundCount);
-            })
-        })
+
     }
 
     setUp(bombs) {
         this.setBombs(bombs);
         this.setBombsAroundCount();
     }
+
 }
 
-export default Minefield;
+export default CellMatrix
